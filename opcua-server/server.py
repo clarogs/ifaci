@@ -17,9 +17,9 @@ objects = server.get_objects_node()
 sensor = objects.add_object(idx, "Sensor")
 
 # 5. Variáveis
-temperature = sensor.add_variable(idx, "Temperature", 25.0)
-pressure = sensor.add_variable(idx, "Pressure", 1.0)
-running = sensor.add_variable(idx, "Running", True)
+temperature = sensor.add_variable(idx, "Temperature", 0.0)
+pressure = sensor.add_variable(idx, "Pressure", 0.0)
+running = sensor.add_variable(idx, "Running", False)
 
 # 6. Permitir escrita externa
 temperature.set_writable()
@@ -33,15 +33,21 @@ print("OPC-UA Server rodando em opc.tcp://localhost:4840")
 try:
     while True:
         # Simulação de processo industrial
-        temp_value = round(20 + random.uniform(0, 10), 2)
+        temp_value = temperature.get_value()
         pres_value = pressure.get_value()
-        run_value = random.choice([True, False])
+        run_value = running.get_value()
 
         temperature.set_value(temp_value)
         pressure.set_value(pres_value)
         running.set_value(run_value)
+        
+        output = {
+            "Temperatura" : temperature.get_value(),
+            "Pressão" : pressure.get_value(),
+            "Status" : running.get_value(),
+        }
 
-        print("Pressão:", pressure.get_value())
+        print(output)
 
         time.sleep(1)
 
