@@ -2,17 +2,21 @@ const express = require('express')
 const cors = require('cors')
 const api = express()
 
-//Configurar os Middlewares
+//Middlewares
 api.use(express.json())
 api.use(cors())
 
+const dados = []
+let id = 0;
+
 //Rotas
-api.get('/', (req, res)=>{
-    res.send("Hello World!").status(200)
+api.get('/usuarios', (req, res)=>{
+    let users = dados;
+
+    res.send(users).status(200)
 })
 
-//Rodando o Servidor
-const porta = 8080
+const porta = 8080;
 api.listen(porta, ()=>{
-    console.log(`Servidor rodando na porta: ${porta}`)
+    console.log(`API rodando na porta ${porta}`)
 })

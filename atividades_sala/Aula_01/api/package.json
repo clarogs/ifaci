@@ -1,9 +1,9 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "description": "API DE TESTE PARA A AULA DE IFACI",
+  "description": "API Feita com os alunos da toyota",
   "license": "ISC",
-  "author": "prof. Gabriel",
+  "author": "",
   "type": "commonjs",
   "main": "server.js",
   "scripts": {
@@ -12,6 +12,7 @@
   "dependencies": {
     "cors": "^2.8.6",
     "express": "^5.2.1",
-    "nodemon": "^3.1.11"
-  }
+    "nodemon": "^3.1.14"
+  },
+  "devDependencies": {}
 }
