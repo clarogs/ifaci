@@ -42,10 +42,12 @@ export default function CriarUsuario(){
             })
             const resposta_json = await resposta.json()
             console.log(resposta_json)
+            alert("Usuário Criado com Sucesso!")
         }
         catch(error){
             console.log(error)
         }
+        
     }
 
 

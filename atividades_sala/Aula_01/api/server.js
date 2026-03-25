@@ -18,6 +18,9 @@ api.get('/usuarios', (req, res)=>{
 
 
 api.post('/novoUsuario',(req, res)=>{
+    if(dados.length <= 0){
+        id = 0;
+    }
     id = id + 1; //incremento
     
     let user = {
@@ -31,6 +34,47 @@ api.post('/novoUsuario',(req, res)=>{
         code: 201,
         msg: "Usuário Criado com sucesso!"})
 })
+api.delete('/usuarios/:id', (req, res)=>{
+    let id = req.params.id
+    let index = dados.findIndex(p => p.id === parseInt(id))
+
+    if(index !== -1){
+        dados.splice(index, 1);
+        
+        return res.status(200).send({
+            code: 200,
+            msg: "Usuário deletado com sucesso!"
+        })
+    }
+    else{
+        return res.status(404).send({
+            code: 404,
+            msg: "Usuário não encontrado"
+        })
+    }
+
+})
+api.put('/usuarios/:id', (req, res)=>{
+    let id = req.params.id
+    let newBody = req.body
+    let index = dados.findIndex(p => p.id === parseInt(id))
+
+    if(index !== -1){
+        dados[index] = {id: parseInt(id), ...newBody}
+        return res.status(200).send({
+            code: 200,
+            msg: "Usuário editado com sucesso!"
+        })
+    }
+    else{
+        return res.status(404).send({
+            code: 404,
+            msg: "Usuário não encontrado"
+        })
+    }
+})
+
+
 
 const porta = 8080;
 api.listen(porta, ()=>{
