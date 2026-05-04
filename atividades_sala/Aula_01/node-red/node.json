@@ -16,12 +16,12 @@
         ],
         "repeat": "",
         "crontab": "",
-        "once": true,
+        "once": false,
         "onceDelay": "0.1",
         "topic": "",
-        "payload": "{\"temperatura\":48,\"pressao\":1.64,\"umidade\":0.31,\"sensor_presenca\":true,\"trava_seguranca\":true}",
+        "payload": "{\"temperatura\":0,\"pressao\":0,\"umidade\":0,\"sensor_presenca\":false,\"trava_seguranca\":false}",
         "payloadType": "json",
-        "x": 230,
+        "x": 220,
         "y": 180,
         "wires": [
             [
@@ -73,9 +73,9 @@
         "id": "f9e9106989bab720",
         "type": "comment",
         "z": "f046b6947ded6c09",
-        "name": "Cria os dados do sensor",
+        "name": "Criar sensor",
         "info": "",
-        "x": 270,
+        "x": 230,
         "y": 140,
         "wires": []
     },
@@ -86,26 +86,21 @@
         "name": "Mensagem",
         "props": [
             {
-                "p": "payload"
-            },
-            {
                 "p": "contentType",
                 "v": "application-json",
                 "vt": "str"
             }
         ],
-        "repeat": "",
+        "repeat": "5",
         "crontab": "",
-        "once": true,
+        "once": false,
         "onceDelay": "0.1",
         "topic": "",
-        "payload": "{\"temperatura\":44,\"pressao\":1.4,\"umidade\":0.12,\"sensor_presenca\":true,\"trava_seguranca\":true}",
-        "payloadType": "json",
         "x": 230,
         "y": 300,
         "wires": [
             [
-                "552de300d1e17634"
+                "f323a550524fa80a"
             ]
         ]
     },
@@ -117,7 +112,7 @@
         "method": "PUT",
         "ret": "txt",
         "paytoqs": "ignore",
-        "url": "http://localhost:8080/sensor/2",
+        "url": "http://localhost:8080/sensor/1",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -125,8 +120,8 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 430,
-        "y": 300,
+        "x": 510,
+        "y": 420,
         "wires": [
             [
                 "ca232ea2643ca2fc"
@@ -158,5 +153,25 @@
         "x": 280,
         "y": 260,
         "wires": []
+    },
+    {
+        "id": "f323a550524fa80a",
+        "type": "function",
+        "z": "f046b6947ded6c09",
+        "name": "Gera dados randômicos.",
+        "func": "let ativo = true;\n\nmsg.payload = {\n    \"temperatura\" : Math.random()*100,\n    \"pressao\": Math.random(),\n    \"umidade\": 1 + Math.random(),\n    \"sensor_presenca\": !ativo, \n    \"trava_seguranca\": !ativo, \n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 340,
+        "wires": [
+            [
+                "552de300d1e17634"
+            ]
+        ]
     }
 ]

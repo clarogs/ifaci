@@ -74,7 +74,6 @@ api.put('/sensor/:id', (req,res)=>{
     
     if(index != -1){
         iot_data[index] = {id: parseInt(id), ...newBody}
-        console.log(dados[index])
         return res.status(200).send({
             "msg":"Dados do sensor atualizados!"
         })
