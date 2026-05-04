@@ -5,7 +5,7 @@ import ListarUsuario from "./components/ListarUsuario"
 export default function Home(){
   return(
     <div>
-      <Header/>
+      <Header name="Gerenciar Usuários"/>
       <div className="flex gap-4 p-4">
         <CriarUsuario/>
         <ListarUsuario/>

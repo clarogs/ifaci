@@ -1,0 +1,162 @@
+[
+    {
+        "id": "6b5e9ad51a009cbf",
+        "type": "inject",
+        "z": "f046b6947ded6c09",
+        "name": "Mensagem",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "contentType",
+                "v": "application-json",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.1",
+        "topic": "",
+        "payload": "{\"temperatura\":48,\"pressao\":1.64,\"umidade\":0.31,\"sensor_presenca\":true,\"trava_seguranca\":true}",
+        "payloadType": "json",
+        "x": 230,
+        "y": 180,
+        "wires": [
+            [
+                "cd49c3502a221623"
+            ]
+        ]
+    },
+    {
+        "id": "cd49c3502a221623",
+        "type": "http request",
+        "z": "f046b6947ded6c09",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://localhost:8080/newData/",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 430,
+        "y": 180,
+        "wires": [
+            [
+                "f61e91633828cb26"
+            ]
+        ]
+    },
+    {
+        "id": "f61e91633828cb26",
+        "type": "debug",
+        "z": "f046b6947ded6c09",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "f9e9106989bab720",
+        "type": "comment",
+        "z": "f046b6947ded6c09",
+        "name": "Cria os dados do sensor",
+        "info": "",
+        "x": 270,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "dfaaa6777f0b28b1",
+        "type": "inject",
+        "z": "f046b6947ded6c09",
+        "name": "Mensagem",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "contentType",
+                "v": "application-json",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.1",
+        "topic": "",
+        "payload": "{\"temperatura\":44,\"pressao\":1.4,\"umidade\":0.12,\"sensor_presenca\":true,\"trava_seguranca\":true}",
+        "payloadType": "json",
+        "x": 230,
+        "y": 300,
+        "wires": [
+            [
+                "552de300d1e17634"
+            ]
+        ]
+    },
+    {
+        "id": "552de300d1e17634",
+        "type": "http request",
+        "z": "f046b6947ded6c09",
+        "name": "",
+        "method": "PUT",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://localhost:8080/sensor/2",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 430,
+        "y": 300,
+        "wires": [
+            [
+                "ca232ea2643ca2fc"
+            ]
+        ]
+    },
+    {
+        "id": "ca232ea2643ca2fc",
+        "type": "debug",
+        "z": "f046b6947ded6c09",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "cc5d9c8cede64832",
+        "type": "comment",
+        "z": "f046b6947ded6c09",
+        "name": "Atualiza os dados do sensor",
+        "info": "",
+        "x": 280,
+        "y": 260,
+        "wires": []
+    }
+]
